@@ -22,7 +22,7 @@ public class Program {
         client = null;
         System.out.println(client);
 
-        client = em.find(Client.class, 8L);
+        client = em.find(Client.class, 1L);
         System.out.println(client);
         em.close();
     }
