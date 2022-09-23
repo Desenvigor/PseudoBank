@@ -1,13 +1,11 @@
 package com.desenvigor.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
+@Table(name = "Clients")
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,4 +28,13 @@ public class Client {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
         return this.name + " - " + sdf.format(this.birthdate);
     }
+
+    public Long getId(){
+        return this.id;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
 }

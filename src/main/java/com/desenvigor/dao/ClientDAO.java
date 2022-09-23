@@ -11,7 +11,7 @@ public class ClientDAO {
     EntityManager em;
 
     public ClientDAO() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("pseudobank");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("pseudoBank");
         this.em = emf.createEntityManager();
     }
 
@@ -23,6 +23,18 @@ public class ClientDAO {
 
     public Client find(Long id){
         return em.find(Client.class, id);
+    }
+
+    public void update(Client client) {
+        em.getTransaction().begin();
+        em.persist(client);
+        em.getTransaction().commit();
+    }
+
+    public void delete(Client client){
+        em.getTransaction().begin();
+        em.remove(client);
+        em.getTransaction().commit();
     }
 
     public List<Client> findAll(){
