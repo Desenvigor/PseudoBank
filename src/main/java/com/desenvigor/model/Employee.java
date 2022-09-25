@@ -3,9 +3,11 @@ package com.desenvigor.model;
 import com.desenvigor.dao.ClientDAO;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
+@Table(name = "Employees")
 public class Employee extends Client{
     String credential;
 
@@ -24,5 +26,10 @@ public class Employee extends Client{
 
     public boolean authenticate(String credential){
         return this.credential.equals(credential);
+    }
+
+    @Override
+    public String toString() {
+        return name + " - " + credential;
     }
 }

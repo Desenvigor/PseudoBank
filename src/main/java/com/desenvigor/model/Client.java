@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "Clients")
-@MappedSuperclass
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
