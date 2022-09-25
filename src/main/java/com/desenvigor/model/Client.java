@@ -6,6 +6,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "Clients")
+@MappedSuperclass
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

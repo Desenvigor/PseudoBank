@@ -30,4 +30,9 @@ public class SavingsAccount extends Account{
         BigDecimal balanceWithRevenue = super.getBalance().multiply(new BigDecimal(revenue));
         super.setBalance(balanceWithRevenue);
     }
+
+    @Override
+    public String toString() {
+        return client + "Savings Account";
+    }
 }

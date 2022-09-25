@@ -11,7 +11,7 @@ import java.util.List;
 public class AccountDAO {
     private EntityManager em;
 
-    public AccountDAO(EntityManager em) {
+    public AccountDAO() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("pseudoBank");
         this.em = emf.createEntityManager();
     }

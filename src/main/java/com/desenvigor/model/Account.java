@@ -65,4 +65,9 @@ public abstract class  Account {
     public abstract void withdraw();
 
     public abstract void deposit();
+
+    @Override
+    public String toString() {
+        return client + "Normal Account";
+    }
 }
