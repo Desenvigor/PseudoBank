@@ -3,6 +3,7 @@ package com.desenvigor.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -16,6 +17,7 @@ public abstract class  Account {
     @OneToOne
     @JoinColumn(name = "client_id")
     Client client;
+    private List<Transaction> transactions;
     String number;
     String agency;
     BigDecimal balance;
