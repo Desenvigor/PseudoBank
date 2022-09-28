@@ -28,7 +28,7 @@ public class AccountDAO {
 
     public void update(Account account) {
         em.getTransaction().begin();
-        em.persist(account);
+        em.merge(account);
         em.getTransaction().commit();
     }
 

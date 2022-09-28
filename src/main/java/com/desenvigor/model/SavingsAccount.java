@@ -22,9 +22,9 @@ public class SavingsAccount extends Account{
     @Override
     public void deposit(String value) {
         BigDecimal newBalanceAfterDeposit = super.getBalance().add(new BigDecimal(value));
-        BigDecimal balanceWithRevenue = newBalanceAfterDeposit.multiply(new BigDecimal(revenue));
+        BigDecimal balanceWithRevenue = newBalanceAfterDeposit.multiply(new BigDecimal(revenue)).add(super.getBalance());
         super.setBalance(balanceWithRevenue);
-        Transaction trans = new Transaction(this, Operation.WITHDRAW, balanceWithRevenue);
+        Transaction trans = new Transaction(this, Operation.DEPOSIT, balanceWithRevenue);
         super.setTransactions(trans);
     }
 

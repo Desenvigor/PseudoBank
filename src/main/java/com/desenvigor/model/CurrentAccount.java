@@ -23,7 +23,7 @@ public class CurrentAccount extends Account{
         BigDecimal newBalanceAfterDeposit = super.getBalance().add(new BigDecimal(value));
         BigDecimal balanceWithRevenue = super.getBalance().multiply(new BigDecimal(revenue*2));
         super.setBalance(balanceWithRevenue);
-        Transaction trans = new Transaction(this, Operation.WITHDRAW, balanceWithRevenue);
+        Transaction trans = new Transaction(this, Operation.DEPOSIT, balanceWithRevenue);
         super.setTransactions(trans);
     }
 

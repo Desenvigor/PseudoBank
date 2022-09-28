@@ -97,7 +97,7 @@ public abstract class  Account {
         BigDecimal wd = new BigDecimal(value);
         this.setBalance(tax1.subtract(wd));
         Transaction trans = new Transaction(this, Operation.WITHDRAW, wd);
-        transactions.add(trans);
+        this.setTransactions(trans);
     };
 
     public abstract void deposit(String value);

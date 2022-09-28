@@ -23,5 +23,9 @@ public class Program {
         System.out.println(client2Account);
         System.out.println(employee);
         System.out.println(empAccount);
+
+
+        clientAccount.deposit("2.0");
+        accDao.update(clientAccount);
     }
 }
