@@ -42,4 +42,12 @@ public class AccountDAO {
         String jpql = "SELECT c FROM Client c";
         return em.createQuery(jpql, Client.class).getResultList();
     }
+
+    @Override
+    protected void finalize() throws Throwable {
+        em.close();
+        super.finalize();
+    }
+
+
 }

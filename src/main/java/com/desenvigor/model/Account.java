@@ -3,6 +3,7 @@ package com.desenvigor.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,11 +15,11 @@ public abstract class  Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToOne
+    @OneToOne()
     @JoinColumn(name = "client_id")
     private Client client;
-    @OneToMany
-    private List<Transaction> transactions;
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private List<Transaction> transactions = new ArrayList<>();
     private String number;
     private String agency;
     private BigDecimal balance;
@@ -28,7 +29,16 @@ public abstract class  Account {
         return transactions;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public void setTransactions(Transaction transactions) {
+        transactions.setAccount(this);
         this.transactions.add(transactions);
     }
 
@@ -94,6 +104,6 @@ public abstract class  Account {
 
     @Override
     public String toString() {
-        return client + "Normal Account";
+        return client + " Normal Account";
     }
 }

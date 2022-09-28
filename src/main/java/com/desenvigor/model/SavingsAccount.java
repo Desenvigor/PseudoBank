@@ -30,6 +30,6 @@ public class SavingsAccount extends Account{
 
     @Override
     public String toString() {
-        return super.getClient() + "Savings Account";
+        return super.getClient() + " Savings Account";
     }
 }

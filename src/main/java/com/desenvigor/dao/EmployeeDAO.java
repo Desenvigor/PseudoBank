@@ -18,7 +18,11 @@ public class EmployeeDAO {
         return em.find(Employee.class, id);
     }
 
-
+    @Override
+    protected void finalize() throws Throwable {
+        em.close();
+        super.finalize();
+    }
 
 
 }

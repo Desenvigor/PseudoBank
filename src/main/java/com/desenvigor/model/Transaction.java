@@ -12,7 +12,6 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "account_id")
     private Account account;
     private LocalDate time;
     private BigDecimal value;
@@ -30,6 +29,10 @@ public class Transaction {
         this.operation = operation;
         this.value = value;
         time = LocalDate.now();
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     @Override

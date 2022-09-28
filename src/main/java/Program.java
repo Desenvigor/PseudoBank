@@ -1,33 +1,27 @@
 import com.desenvigor.dao.AccountDAO;
+import com.desenvigor.dao.ClientDAO;
+import com.desenvigor.dao.EmployeeDAO;
 import com.desenvigor.model.Account;
-import com.desenvigor.model.Operation;
-import com.desenvigor.model.Transaction;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import java.util.List;
+import com.desenvigor.model.Client;
 
 public class Program {
     public static void main(String[] args) {
+        ClientDAO clientDAO = new ClientDAO();
+        AccountDAO accDao = new AccountDAO();
+        EmployeeDAO empDAO = new EmployeeDAO();
+        Client client = clientDAO.find(1L);
+        Client client2 = clientDAO.find(2L);
+        Client employee = empDAO.findById(10L);
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("pseudoBank");
-        EntityManager em = emf.createEntityManager();
+        Account empAccount = accDao.find(11L);
+        Account clientAccount = accDao.find(8L);
+        Account client2Account = accDao.find(9L);
 
-        String jpql = "SELECT t from Transaction t where operation = " + Operation.WITHDRAW.ordinal();
-
-        List<Transaction> trans = em.createQuery(jpql,Transaction.class).getResultList();
-        AccountDAO accDAO = new AccountDAO();
-
-        Account acc = accDAO.find(19L);
-
-        acc.withdraw("20.00");
-        System.out.println(acc.getBalance());
-
-        accDAO.update(acc);
-
-        trans.forEach(transs -> {
-            System.out.println(transs);
-        });
+        System.out.println(client);
+        System.out.println(clientAccount);
+        System.out.println(client2);
+        System.out.println(client2Account);
+        System.out.println(employee);
+        System.out.println(empAccount);
     }
 }

@@ -29,6 +29,6 @@ public class CurrentAccount extends Account{
 
     @Override
     public String toString() {
-        return super.getClient() + "Current Account";
+        return super.getClient() + " Current Account";
     }
 }
