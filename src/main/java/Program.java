@@ -1,3 +1,5 @@
+import com.desenvigor.dao.AccountDAO;
+import com.desenvigor.model.Account;
 import com.desenvigor.model.Operation;
 import com.desenvigor.model.Transaction;
 
@@ -15,8 +17,14 @@ public class Program {
         String jpql = "SELECT t from Transaction t where operation = " + Operation.WITHDRAW.ordinal();
 
         List<Transaction> trans = em.createQuery(jpql,Transaction.class).getResultList();
+        AccountDAO accDAO = new AccountDAO();
 
+        Account acc = accDAO.find(19L);
 
+        acc.withdraw("20.00");
+        System.out.println(acc.getBalance());
+
+        accDAO.update(acc);
 
         trans.forEach(transs -> {
             System.out.println(transs);

@@ -8,7 +8,6 @@ import java.math.BigDecimal;
 @DiscriminatorValue("Savings")
 public class SavingsAccount extends Account{
 
-    private Double tax;
     private final Double revenue = 0.2;
 
     public SavingsAccount() {
@@ -16,13 +15,9 @@ public class SavingsAccount extends Account{
 
     public SavingsAccount(Client client, String number, String agency, BigDecimal balance, Double tax) {
         super(client, number, agency, balance);
-        this.tax = tax;
+        super.setTax(tax);
     }
 
-    @Override
-    public void withdraw(String value) {
-
-    }
 
     @Override
     public void deposit(String value) {

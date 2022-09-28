@@ -83,7 +83,7 @@ public abstract class  Account {
     }
 
     public void withdraw(String value){
-        BigDecimal tax1 = this.getBalance().subtract(new BigDecimal(tax));
+        BigDecimal tax1 = this.getBalance().subtract(new BigDecimal(tax.toString()));
         BigDecimal wd = new BigDecimal(value);
         this.setBalance(tax1.subtract(wd));
         Transaction trans = new Transaction(this, Operation.WITHDRAW, wd);
