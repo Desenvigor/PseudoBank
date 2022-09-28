@@ -20,19 +20,21 @@ public class SavingsAccount extends Account{
     }
 
     @Override
-    public void withdraw() {
-        BigDecimal tax1 = super.getBalance().subtract(new BigDecimal(tax));
-        super.setBalance(tax1);
+    public void withdraw(String value) {
+
     }
 
     @Override
-    public void deposit() {
-        BigDecimal balanceWithRevenue = super.getBalance().multiply(new BigDecimal(revenue));
+    public void deposit(String value) {
+        BigDecimal newBalanceAfterDeposit = super.getBalance().add(new BigDecimal(value));
+        BigDecimal balanceWithRevenue = newBalanceAfterDeposit.multiply(new BigDecimal(revenue));
         super.setBalance(balanceWithRevenue);
+        Transaction trans = new Transaction(this, Operation.WITHDRAW, balanceWithRevenue);
+        super.setTransactions(trans);
     }
 
     @Override
     public String toString() {
-        return client + "Savings Account";
+        return super.getClient() + "Savings Account";
     }
 }

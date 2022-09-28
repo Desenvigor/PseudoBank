@@ -13,14 +13,32 @@ public abstract class  Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
     @OneToOne
     @JoinColumn(name = "client_id")
-    Client client;
+    private Client client;
+    @OneToMany
     private List<Transaction> transactions;
-    String number;
-    String agency;
-    BigDecimal balance;
+    private String number;
+    private String agency;
+    private BigDecimal balance;
+    private Double tax;
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(Transaction transactions) {
+        this.transactions.add(transactions);
+    }
+
+    public Double getTax() {
+        return tax;
+    }
+
+    public void setTax(Double tax) {
+        this.tax = tax;
+    }
 
     public Account() {
     }
@@ -64,9 +82,15 @@ public abstract class  Account {
         this.balance = balance;
     }
 
-    public abstract void withdraw();
+    public void withdraw(String value){
+        BigDecimal tax1 = this.getBalance().subtract(new BigDecimal(tax));
+        BigDecimal wd = new BigDecimal(value);
+        this.setBalance(tax1.subtract(wd));
+        Transaction trans = new Transaction(this, Operation.WITHDRAW, wd);
+        transactions.add(trans);
+    };
 
-    public abstract void deposit();
+    public abstract void deposit(String value);
 
     @Override
     public String toString() {

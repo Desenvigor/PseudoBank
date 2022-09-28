@@ -7,7 +7,6 @@ import java.math.BigDecimal;
 @Entity
 @DiscriminatorValue("Current")
 public class CurrentAccount extends Account{
-    private Double tax;
     private final Double revenue = 0.5;
 
 
@@ -16,23 +15,20 @@ public class CurrentAccount extends Account{
 
     public CurrentAccount(Client client, String number, String agency, BigDecimal balance, Double tax) {
         super(client, number, agency, balance);
-        this.tax = tax;
+        super.setTax(tax);
     }
 
     @Override
-    public void withdraw() {
-        BigDecimal tax1 = super.getBalance().subtract(new BigDecimal(tax));
-        super.setBalance(tax1);
-    }
-
-    @Override
-    public void deposit() {
+    public void deposit(String value) {
+        BigDecimal newBalanceAfterDeposit = super.getBalance().add(new BigDecimal(value));
         BigDecimal balanceWithRevenue = super.getBalance().multiply(new BigDecimal(revenue*2));
         super.setBalance(balanceWithRevenue);
+        Transaction trans = new Transaction(this, Operation.WITHDRAW, balanceWithRevenue);
+        super.setTransactions(trans);
     }
 
     @Override
     public String toString() {
-        return client + "Current Account";
+        return super.getClient() + "Current Account";
     }
 }
