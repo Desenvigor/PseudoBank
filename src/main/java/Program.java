@@ -1,10 +1,7 @@
 import com.desenvigor.dao.AccountDAO;
 import com.desenvigor.dao.ClientDAO;
 import com.desenvigor.dao.EmployeeDAO;
-import com.desenvigor.model.Client;
-import com.desenvigor.model.CurrentAccount;
-import com.desenvigor.model.Employee;
-import com.desenvigor.model.SavingsAccount;
+import com.desenvigor.model.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -43,6 +40,18 @@ public class Program {
                 System.out.println("Select the client: ");
                 int id = sc.nextInt();
                 Client client = clientDAO.find(Long.parseLong(Integer.toString(id)));
+                Account acc = accDao.findByClient(client.getId());
+                System.out.println("Select operation, deposit or withdraw [d/w]: ");
+                String operation = sc.nextLine();
+                if (operation.toLowerCase().equals("d")){
+                    System.out.println("Insert the value: ");
+                    String value = sc.nextLine();
+                    acc.deposit(value);
+                } else if (operation.toLowerCase().equals("w")){
+                    System.out.println("Insert the value: ");
+                    String value = sc.nextLine();
+                    acc.withdraw(value);
+                }
             }
 
         }
