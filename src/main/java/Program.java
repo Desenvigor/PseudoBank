@@ -14,16 +14,15 @@ public class Program {
         Scanner sc = new Scanner(System.in);
         ClientDAO clientDAO = new ClientDAO();
         AccountDAO accDao = new AccountDAO();
-        EmployeeDAO empDAO = new EmployeeDAO();
-        boolean autheticated = false;
+        boolean authenticated = false;
 
-        while (!autheticated) {
+        while (!authenticated) {
             System.out.print("1 - Login Employee \n2 - Create Employee\n");
             int opt = sc.nextInt();
             sc.nextLine();
 
             if (opt == 1) {
-               autheticated = employeeAuthentication(sc);
+               authenticated = employeeAuthentication(sc);
                 System.out.println("Login successful");
             } else {
                 createNewEmployee(sc);
@@ -43,11 +42,11 @@ public class Program {
                 Account acc = accDao.findByClient(client.getId());
                 System.out.println("Select operation, deposit or withdraw [d/w]: ");
                 String operation = sc.nextLine();
-                if (operation.toLowerCase().equals("d")){
+                if (operation.equalsIgnoreCase("d")){
                     System.out.println("Insert the value: ");
                     String value = sc.nextLine();
                     acc.deposit(value);
-                } else if (operation.toLowerCase().equals("w")){
+                } else if (operation.equalsIgnoreCase("w")){
                     System.out.println("Insert the value: ");
                     String value = sc.nextLine();
                     acc.withdraw(value);
@@ -56,32 +55,11 @@ public class Program {
 
         }
 
-
-
-
-        /*
-
-        //CreateClient
-        Client newClient = new Client();
-        clientDAO.insert(newClient); //Insert client into database
-
-        //Create Savings Account
-        Account newSavAcc = new SavingsAccount();
-        accDao.insert(newSavAcc); //Save account into database
-
-        //Create Current Account
-        Account newCurAcc = new CurrentAccount();
-        accDao.insert(newCurAcc); //Save account into database
-
-        //Create Employee
-        Employee newEmp = new Employee();
-        clientDAO.insert(newEmp); //Save Employee into database
-        */
-
     }
 
     private static void createNewUser(Scanner sc) {
         ClientDAO clientDAO = new ClientDAO();
+        AccountDAO accDao = new AccountDAO();
         System.out.print("Insert client name: ");
         String clientName = sc.nextLine();
         System.out.print("Insert client SSN: ");
@@ -95,12 +73,14 @@ public class Program {
 
         Client newClient = new Client(clientName, clientSsn, new Date(clientBirthdate));
         clientDAO.insert(newClient);
-        if (clientAccount.toLowerCase().equals("ca")){
+        if (clientAccount.equalsIgnoreCase("ca")){
             accNumber++;
             CurrentAccount clientAcc = new CurrentAccount(newClient, "000" + accNumber, "000-1", new BigDecimal(clientInitialDeposit), 0.03);
+            accDao.insert(clientAcc);
         } else {
             accNumber++;
             SavingsAccount clientAcc = new SavingsAccount(newClient, "000" + accNumber, "000-1", new BigDecimal(clientInitialDeposit), 0.03);
+            accDao.insert(clientAcc);
         }
 
     }
