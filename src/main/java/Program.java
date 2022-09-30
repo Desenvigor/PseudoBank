@@ -1,12 +1,18 @@
 import com.desenvigor.dao.AccountDAO;
 import com.desenvigor.dao.ClientDAO;
 import com.desenvigor.dao.EmployeeDAO;
+import com.desenvigor.model.Client;
+import com.desenvigor.model.CurrentAccount;
 import com.desenvigor.model.Employee;
+import com.desenvigor.model.SavingsAccount;
 
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class Program {
+    private static int accNumber = 3;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         ClientDAO clientDAO = new ClientDAO();
@@ -21,9 +27,24 @@ public class Program {
 
             if (opt == 1) {
                autheticated = employeeAuthentication(sc);
+                System.out.println("Login successful");
             } else {
                 createNewEmployee(sc);
             }
+
+            System.out.print("1 - Create User\n2 - Select User\n");
+            int userOpt = sc.nextInt();
+
+            if (userOpt == 1){
+                createNewUser(sc);
+            } else {
+                List<Client> allClients = clientDAO.findAll();
+                allClients.forEach(client -> System.out.println(client.getId() +". "+ client));
+                System.out.println("Select the client: ");
+                int id = sc.nextInt();
+                Client client = clientDAO.find(Long.parseLong(Integer.toString(id)));
+            }
+
         }
 
 
@@ -47,6 +68,31 @@ public class Program {
         Employee newEmp = new Employee();
         clientDAO.insert(newEmp); //Save Employee into database
         */
+
+    }
+
+    private static void createNewUser(Scanner sc) {
+        ClientDAO clientDAO = new ClientDAO();
+        System.out.print("Insert client name: ");
+        String clientName = sc.nextLine();
+        System.out.print("Insert client SSN: ");
+        String clientSsn = sc.nextLine();
+        System.out.print("Insert birthdate [dd/MM/yyyy]: ");
+        String clientBirthdate = sc.nextLine();
+        System.out.print("What type is the account[CA/SA]: ");
+        String clientAccount = sc.nextLine();
+        System.out.println("Initial deposit: ");
+        String clientInitialDeposit = sc.nextLine();
+
+        Client newClient = new Client(clientName, clientSsn, new Date(clientBirthdate));
+        clientDAO.insert(newClient);
+        if (clientAccount.toLowerCase().equals("ca")){
+            accNumber++;
+            CurrentAccount clientAcc = new CurrentAccount(newClient, "000" + accNumber, "000-1", new BigDecimal(clientInitialDeposit), 0.03);
+        } else {
+            accNumber++;
+            SavingsAccount clientAcc = new SavingsAccount(newClient, "000" + accNumber, "000-1", new BigDecimal(clientInitialDeposit), 0.03);
+        }
 
     }
 
