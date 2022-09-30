@@ -5,6 +5,7 @@ import com.desenvigor.model.Employee;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class EmployeeDAO {
     EntityManager em;
@@ -16,6 +17,12 @@ public class EmployeeDAO {
 
     public Employee findById(Long id){
         return em.find(Employee.class, id);
+    }
+
+    public Employee findByCredential(String credential){
+        String jpql = "SELECT e FROM Employee e WHERE credential = " + credential;
+        List<Employee> emp = em.createQuery(jpql, Employee.class).getResultList();
+        return emp.get(0);
     }
 
     @Override
