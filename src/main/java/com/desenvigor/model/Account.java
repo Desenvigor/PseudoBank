@@ -15,7 +15,7 @@ public abstract class  Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToOne()
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
     private Client client;
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
