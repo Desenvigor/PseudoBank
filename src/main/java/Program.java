@@ -1,7 +1,9 @@
 import com.desenvigor.dao.AccountDAO;
 import com.desenvigor.dao.ClientDAO;
 import com.desenvigor.dao.EmployeeDAO;
+import com.desenvigor.dao.TransactionDAO;
 import com.desenvigor.model.*;
+import com.desenvigor.vo.TransactionsReportVO;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -15,6 +17,10 @@ public class Program {
         ClientDAO clientDAO = new ClientDAO();
         AccountDAO accDao = new AccountDAO();
         boolean authenticated = false;
+        TransactionDAO transDAO = new TransactionDAO();
+
+        List<TransactionsReportVO> transactions = transDAO.reportTransfer();
+        transactions.forEach(System.out::println);
 
         while (!authenticated) {
             System.out.print("1 - Login Employee \n2 - Create Employee\n");
