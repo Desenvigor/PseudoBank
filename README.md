@@ -1,5 +1,4 @@
 # PseudoBank
-<spam id=PseudoBank></spam>
 
 <!---Esses são exemplos. Veja https://shields.io para outras pessoas ou para personalizar este conjunto de escudos. Você pode querer incluir dependências, status do projeto e informações de licença aqui--->
 
@@ -59,4 +58,4 @@ This project was made by:
 
 MIT
 
-[⬆ Voltar ao topo]<a href="#PseudoBank">PseudoBank</a><br>
+[⬆ Voltar ao topo] (#PseudoBank)<br>
