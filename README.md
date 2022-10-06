@@ -22,13 +22,14 @@ Este projeto simula um banco com as operações de criação de clientes, funcio
 <img src="https://user-images.githubusercontent.com/43388013/194183396-869c209c-7a0b-4955-8a70-fc61544ec10d.png" alt="Image example">
 
 > Selecionar qual o cliente.
-
-> Na lista também aparece os funcionários pois no banco os funcionários também são clientes.
+* Na lista também aparece os funcionários pois no banco os funcionários também são clientes.
 <img src="https://user-images.githubusercontent.com/43388013/194183653-7e6f6e2d-e724-41cd-a1e8-a6d7fcf7ac51.png" alt="Image example">
 
 > Escolha a operação e o valor.
 <img src="https://user-images.githubusercontent.com/43388013/194184081-809f7142-c5cd-4617-9dae-bd5fba16cd75.png" alt="Image example">
 
+## 📗 Aprendizado
+* Com esse projeto tive a oportunidade de aprender um pouco mais de JPA onde nos meus estudos aprendi sobre Named queries, Criteria API a abordagem de View Object para recuperar dados trabalhados utilizando mais de uma entidade. Não utilizei named queries nem Criteria pois não achei necessário o uso até onde se encontra o estado atual da aplicação.
 
 
 ## 💻 Requerimento
