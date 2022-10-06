@@ -58,4 +58,4 @@ This project was made by:
 
 MIT
 
-[⬆ Voltar ao topo] (#PseudoBank)<br>
+[⬆ Voltar ao topo](#PseudoBank)<br>
