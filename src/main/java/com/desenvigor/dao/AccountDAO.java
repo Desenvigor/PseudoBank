@@ -51,7 +51,7 @@ public class AccountDAO {
 
 
     public Account findByClient(Long id) {
-        String jpql = "SELECT a FROM Account WHERE client = "+ id;
+        String jpql = "SELECT a FROM Account a WHERE client = "+ id;
         return em.createQuery(jpql, Account.class).getSingleResult();
     }
 }

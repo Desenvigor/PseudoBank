@@ -47,7 +47,8 @@ public class Program {
                 Client client = clientDAO.find(Long.parseLong(Integer.toString(id)));
                 Account acc = accDao.findByClient(client.getId());
                 System.out.println("Select operation, deposit or withdraw [d/w]: ");
-                String operation = sc.nextLine();
+                String operation = sc.next();
+                sc.nextLine();
                 if (operation.equalsIgnoreCase("d")){
                     System.out.println("Insert the value: ");
                     String value = sc.nextLine();
