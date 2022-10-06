@@ -4,6 +4,7 @@
 
 <!--- /github/languages/code-size/:user/:repo --->
 ![GitHub repo size](https://img.shields.io/github/repo-size/igor-aguiar/PseudoBank)
+![GitHub las commit](https://img.shields.io/github/last-commit/igor-aguiar/Pseudobank)
 
 > Projeto desenvolvido para praticar o uso de persistência de dados utilizando tecnicas do paradigma de orientação a objetos como hierarquia e polimorfismo.
 
